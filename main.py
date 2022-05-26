@@ -89,11 +89,11 @@ def main():
     while run:
         #main_music = pygame.mixer.Sound(os.path.join("music", "main.wav"))
         #pygame.mixer.Sound.play(main_music)
-        clock.tick(FPS)
-        redraw_window()
+        
         
         for wave in waves:
-            
+            clock.tick(FPS)
+            redraw_window()
 
             if lives <= 0 or player.is_dead():
                 lost = True
