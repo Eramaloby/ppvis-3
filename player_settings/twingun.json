@@ -1,0 +1,6 @@
+{
+    "health": 80,
+    "dmg": 60,
+    "vel": 4,
+    "cooldown": 30
+}

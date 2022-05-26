@@ -1,0 +1,22 @@
+{
+    "wave_1": ["red", "red", "red", "red", "red"],
+    "wave_2": ["purple", "purple", "purple", "purple", "purple"],
+    "wave_3": ["green", "green", "green", "green", "green"],
+    "wave_4": ["kamikaze", "kamikaze", "kamikaze", "kamikaze", "kamikaze"],
+    "wave_5": ["shift", "shift", "shift", "shift", "shift"],
+    "wave_6": ["moon"],
+    "wave_7": ["red", "red", "purple", "purple", "purple"],
+    "wave_8": ["diagonal", "diagonal", "diagonal", "diagonal", "diagonal"],
+    "wave_9": ["diagonal", "diagonal", "shift", "shift", "kamikaze"],
+    "wave_10": ["wall"],
+    "wave_11": ["purple", "purple", "green", "kamikaze", "shift", "kamikaze", "shift"],
+    "wave_12": ["red", "red", "kamikaze", "green", "shift", "green", "purple"],
+    "wave_13": ["green", "green", "shift", "red", "kamikaze", "green", "purple", "purple"],
+    "wave_14": ["red", "red", "shift", "shift", "red", "green", "purple", "purple"],
+    "wave_15": ["two_face"],
+    "wave_16": ["green", "green", "shift", "red", "kamikaze", "green", "kamikaze", "kamikaze", "kamikaze", "kamikaze"],
+    "wave_17": ["shift", "shift", "shift", "shift", "shift", "kamikaze", "kamikaze","kamikaze", "kamikaze", "kamikaze"],
+    "wave_18": ["red", "green", "purple", "red", "green", "purple", "red", "green", "purple", "kamikaze"],
+    "wave_19": ["kamikaze", "kamikaze", "kamikaze", "kamikaze", "kamikaze", "green", "green", "green", "green", "green"],
+    "wave_20": ["evil_twin"]
+}
