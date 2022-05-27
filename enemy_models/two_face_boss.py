@@ -17,7 +17,7 @@ TWOFACE_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_green.png"
 class TwoFace(Ship):
     def __init__(self):
         x = WIDTH / 2 - 100
-        y = 10
+        y = -200
         health = get(os.path.join("enemy_settings", "two_face_boss.json"), "health")
         vel = get(os.path.join("enemy_settings", "two_face_boss.json"), "vel")   
         super().__init__(x, y, health, vel)

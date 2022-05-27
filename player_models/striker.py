@@ -12,7 +12,7 @@ STRIKER_LASER = pygame.image.load(os.path.join("assets", "striker_laser.png"))
 
 
 class Striker(Ship):
-    def __init__(self, x=300, y=630,
+    def __init__(self, x=350, y=630,
                  health=get(os.path.join("player_settings", "striker.json"), "health"),
                  vel = get(os.path.join("player_settings", "striker.json"), "vel")):
         super().__init__(x, y, health, vel)

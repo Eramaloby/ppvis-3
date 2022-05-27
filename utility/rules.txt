@@ -1,0 +1,7 @@
+Welcome to Space Invaders!
+
+Press WASD to move.
+Press Space to shoot.
+
+Don't let enemies destroy your ship
+or get around you.

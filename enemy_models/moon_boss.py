@@ -17,7 +17,7 @@ MOON_LASER = pygame.image.load(os.path.join("assets", "moon_boss_laser.png"))
 class Moon(Ship):
     def __init__(self):
         x = WIDTH / 2 - 50
-        y = 10
+        y = -200
         health = get(os.path.join("enemy_settings", "moon_boss.json"), "health")
         vel = get(os.path.join("enemy_settings", "moon_boss.json"), "vel")   
         super().__init__(x, y, health, vel)
@@ -30,7 +30,7 @@ class Moon(Ship):
 
     def shoot(self):
         if self.cool_down_counter == 0:
-            laser = Laser(self.x, self.y, self.laser_img)
+            laser = Laser(self.x, self.y + 20, self.laser_img)
             self.lasers.append(laser)
             self.cool_down_counter = 1
             shot_sound = pygame.mixer.Sound('music/laser.wav')

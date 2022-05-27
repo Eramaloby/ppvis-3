@@ -17,7 +17,7 @@ WALL_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_blue.png"))
 class Wall(Ship):
     def __init__(self):
         x = WIDTH / 2 - 50
-        y = 10
+        y = -200
         health = get(os.path.join("enemy_settings", "wall_boss.json"), "health")
         vel = get(os.path.join("enemy_settings", "wall_boss.json"), "vel")   
         super().__init__(x, y, health, vel)
@@ -30,7 +30,7 @@ class Wall(Ship):
 
     def shoot(self):
         if self.cool_down_counter == 0:
-            laser_mid = Laser(self.x + 50, self.y, self.laser_img)
+            laser_mid = Laser(self.x + 50, self.y + 20, self.laser_img)
             laser_left = Laser(self.x, self.y, self.laser_img)
             laser_right = Laser(self.x + 100, self.y, self.laser_img)
             self.lasers.append(laser_mid)

@@ -17,7 +17,7 @@ EVILTWIN_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_purple.pn
 class EvilTwin(Ship):
     def __init__(self):
         x = WIDTH / 2 - 100
-        y = 10
+        y = -200
         health = get(os.path.join("enemy_settings", "evil_twin_boss.json"), "health")
         vel = get(os.path.join("enemy_settings", "evil_twin_boss.json"), "vel")   
         super().__init__(x, y, health, vel)
