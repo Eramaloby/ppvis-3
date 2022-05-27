@@ -4,27 +4,27 @@ import sys
 
 from utility.config import get
 from utility.button import Button
-from utility.get_rules import get_rules
+from utility.record_reader import get_records
 
 
 
 WIDTH = get(os.path.join("utility", "settings.json"), "width")
 HEIGHT = get(os.path.join("utility", "settings.json"), "height")
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-rules = get_rules()
 BACKGROUND = pygame.transform.scale(pygame.image.load(os.path.join("assets", "background-black.png")), (WIDTH, HEIGHT))
 
-def rules_menu():
+
+def records_menu():
     buttons_font = pygame.font.SysFont("comicsans", 70)
-    rules_font = pygame.font.SysFont("arial", 50)
-    rules = get_rules()
+    records_font = pygame.font.SysFont("arial", 50)
+    records = get_records()
     while True:
         WIN.blit(BACKGROUND, (0,0))
         
         y_pos = 150
-        for rule in rules.split('\n'):
-            rule_label = rules_font.render(rule, 1, (255,255,255))
-            WIN.blit(rule_label, (WIDTH/2 - rule_label.get_width()/2, y_pos))
+        for record in records:
+            record_label = records_font.render(record, 1, (255,255,255))
+            WIN.blit(record_label, (WIDTH/2 - record_label.get_width()/2, y_pos))
             y_pos += 50
         
         MENU_MOUSE_POS = pygame.mouse.get_pos()

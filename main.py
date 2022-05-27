@@ -2,12 +2,14 @@ import pygame
 import os
 import sys
 
+
 pygame.mixer.init()
 
 from game import game
 from utility.config import get
 from utility.button import Button
 from rules import rules_menu
+from records import records_menu
 
 WIDTH = get(os.path.join("utility", "settings.json"), "width")
 HEIGHT = get(os.path.join("utility", "settings.json"), "height")
@@ -19,6 +21,8 @@ def main():
     
     pygame.mixer.music.load("music/menu.wav")
     pygame.mixer.music.play(-1)
+    
+    
     while True:
         WIN.blit(BACKGROUND, (0,0))
         
@@ -30,28 +34,29 @@ def main():
         RULES_BUTTON = Button(None, pos=(420,400), text_input='RULES', font=title_font,
                              base_color='#d7fcd4', hovering_color='White')
         
+        RECORDS_BUTTON = Button(None, pos=(420,550), text_input='RECORDS', font=title_font,
+                             base_color='#d7fcd4', hovering_color='White')
+        
         QUIT_BUTTON = Button(None, pos=(420,700), text_input='QUIT', font=title_font,
                              base_color='#d7fcd4', hovering_color='White')
         
         
-        for button in [PLAY_BUTTON, RULES_BUTTON, QUIT_BUTTON]:
+        for button in [PLAY_BUTTON, RULES_BUTTON, RECORDS_BUTTON, QUIT_BUTTON]:
             button.change_color(MENU_MOUSE_POS)
             button.update(WIN)
             
-        
-        
-        #title_label = title_font.render("Press the mouse to begin...", 1, (255,255,255))
-        
-        #WIN.blit(title_label, (WIDTH/2 - title_label.get_width()/2, 350))
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BUTTON.check_for_input(MENU_MOUSE_POS):
                     game()
                 if RULES_BUTTON.check_for_input(MENU_MOUSE_POS):
                     rules_menu()
+                if RECORDS_BUTTON.check_for_input(MENU_MOUSE_POS):
+                    records_menu()
                 if QUIT_BUTTON.check_for_input(MENU_MOUSE_POS):
                     pygame.quit()
                     sys.exit()

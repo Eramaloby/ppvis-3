@@ -1,4 +1,5 @@
 import pygame
+import pygame_textinput
 import os
 import random
 import sys
@@ -22,6 +23,7 @@ from abstractions.collide import collide
 from utility.config import get 
 from utility.reader import read
 from utility.button import Button
+from utility.update_records import update_records
 
 WIDTH, HEIGHT = get(os.path.join("utility", "settings.json"), "width"), get(os.path.join("utility", "settings.json"), "width")
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -57,6 +59,60 @@ def game():
     pygame.mixer.music.load("music/main.wav")
     pygame.mixer.music.play(-1)
     
+    nickname = ''
+    textinput = pygame_textinput.TextInputVisualizer()
+    not_logged = True
+    while not_logged:
+        WIN.blit(BACKGROUND, (0,0))
+        
+        MENU_MOUSE_POS = pygame.mouse.get_pos()
+        
+        events = pygame.event.get()
+        textinput.update(events)
+        WIN.blit(textinput.surface, (350, 150))
+        
+        input_font = pygame.font.SysFont("comicsans", 50)
+        input_label = input_font.render("Input your nickname", 1, (255,255,255))
+        confirm_label = input_font.render("Press Enter to confirm", 1, (255,255,255))
+        WIN.blit(input_label, (WIDTH/2 - input_label.get_width()/2, 10))
+        WIN.blit(confirm_label, (WIDTH/2 - confirm_label.get_width()/2, 70))
+        
+        log_font = pygame.font.SysFont("comicsans", 70)
+        
+        DEFAULT_BUTTON = Button(None, pos=(420,250), text_input='DEFAULT SHIFT', font=log_font,
+                             base_color='#d7fcd4', hovering_color='White')
+        
+        STRIKER_BUTTON = Button(None, pos=(420,400), text_input='STRIKER SHIP', font=log_font,
+                             base_color='#d7fcd4', hovering_color='White')
+        
+        TWINGUN_BUTTON = Button(None, pos=(420,550), text_input='TWINGUN SHIP', font=log_font,
+                             base_color='#d7fcd4', hovering_color='White')
+
+        for button in [DEFAULT_BUTTON, STRIKER_BUTTON, TWINGUN_BUTTON]:
+            button.change_color(MENU_MOUSE_POS)
+            button.update(WIN)
+            
+        pygame.display.update()
+        for event in events:
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if DEFAULT_BUTTON.check_for_input(MENU_MOUSE_POS):
+                    player = Player()
+                    not_logged = False
+                    break
+                if STRIKER_BUTTON.check_for_input(MENU_MOUSE_POS):
+                    player = Striker()
+                    not_logged = False
+                    break
+                if TWINGUN_BUTTON.check_for_input(MENU_MOUSE_POS):
+                    player = TwinGun()
+                    not_logged = False
+                    break
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                nickname = textinput.value
+    
     def redraw_window():
         WIN.blit(BACKGROUND, (0,0))
         # draw text
@@ -73,6 +129,7 @@ def game():
         player.draw(WIN)
 
         if lost:
+            update_records(nickname, level)
             lost_sound = pygame.mixer.Sound('music/lost.wav')
             pygame.mixer.Sound.play(lost_sound)
             while lost:
@@ -105,8 +162,6 @@ def game():
 
             if lives <= 0 or player.is_dead():
                 lost = True
-
-            
 
             if len(enemies) == 0:
                 level += 1
